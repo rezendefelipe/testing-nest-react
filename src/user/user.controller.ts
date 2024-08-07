@@ -8,7 +8,7 @@ export class UserController {
 
   @Get()
   async getAllUsers() {
-    return JSON.stringify({ user: 'some user details' });
+    return this.userService.getAllUsers();
   }
 
   @Post()
