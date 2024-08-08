@@ -43,4 +43,19 @@ export class UserService {
 
     return user;
   }
+
+  async getUserByIdWithReferences(userId: number): Promise<UserEntity> {
+    const user = await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+      relations: ['addresses'],
+    });
+
+    if (!user) {
+      throw new NotFoundException(`User not found!`);
+    }
+
+    return user;
+  }
 }

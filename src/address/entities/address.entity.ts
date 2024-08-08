@@ -1,7 +1,10 @@
+import { UserEntity } from 'src/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -27,4 +30,8 @@ export class AddressEntity {
 
   @UpdateDateColumn({ name: 'update_at' })
   updateAt: Date;
+
+  @ManyToOne(() => UserEntity, (user) => user.addresses)
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  userEntity: UserEntity;
 }
